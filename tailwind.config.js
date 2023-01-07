@@ -6,11 +6,23 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        mulish: ["var(--font-mulish)", "sans-serif"],
-      },
+    fontFamily: {
+      mulish: ["var(--font-mulish)", "sans-serif"],
     },
+    fontWeight: {
+      light: "300",
+      normal: "400",
+      bold: "700",
+    },
+    colors: {
+      yellow: "#FFD814",
+      bluish: "#007185",
+      black: "#0F1111",
+      red: "#B12704",
+      successgreen: "#007600",
+      darkgreen: "#067D62",
+    },
+    extend: {},
   },
   plugins: [],
 };
