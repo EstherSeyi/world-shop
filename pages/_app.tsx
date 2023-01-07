@@ -1,10 +1,10 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { Inter } from "@next/font/google";
+import { Mulish } from "@next/font/google";
 
-const inter = Inter({
+const mulish = Mulish({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-mulish",
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <style jsx global>{`
         html {
-          font-family: ${inter.style.fontFamily};
+          font-family: ${mulish.style.fontFamily};
         }
       `}</style>
       <Component {...pageProps} />
