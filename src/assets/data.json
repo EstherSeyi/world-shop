@@ -1,0 +1,290 @@
+{
+  "status": "success",
+  "data": {
+    "benefitsList": [
+      {
+        "id": 2202020005,
+        "name": "Hodly Ghost Tshirt",
+        "vendor": "Chimoney",
+        "product_type": "T-Shirt",
+        "created_at": "2022-02-18",
+        "handle": "hodly-ghost-shirt",
+        "status": "active",
+        "tags": ["tshirts"],
+        "price": 49.99,
+        "currency": "USD",
+        "sizes": ["S", "M", "L", "XL", "2XL"],
+        "variants": [
+          {
+            "name": "Black",
+            "created_at": "2022-02-18",
+            "price": 49.99
+          },
+          {
+            "name": "White",
+            "created_at": "2022-02-18",
+            "price": 49.99
+          },
+          {
+            "name": "Gray",
+            "created_at": "2022-02-18",
+            "price": 49.99
+          },
+          {
+            "name": "Blue",
+            "created_at": "2022-02-18",
+            "price": 49.99
+          }
+        ],
+        "images": [
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/d0d9440f-9f65-4157-9a4e-eb099fecc300/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/0a3fda56-87a7-40fd-becc-1f0cc56f3b00/Products"
+        ],
+        "discount": {
+          "name": "Save 20%",
+          "percentOff": 20
+        },
+        "countries": [],
+        "available": false,
+        "type": "Products"
+      },
+      {
+        "id": 2202010002,
+        "name": "HODL Me Tshirt",
+        "vendor": "Chimoney",
+        "product_type": "T-Shirt",
+        "created_at": "2022-01-18",
+        "handle": "hodl-me-crypto-tshirt",
+        "status": "active",
+        "tags": ["tshirts"],
+        "price": 39.99,
+        "currency": "USD",
+        "sizes": ["S", "M", "L", "XL", "2XL"],
+        "variants": [
+          {
+            "name": "Black",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "White",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "Gray",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "Blue",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          }
+        ],
+        "images": [
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/8cbdc661-9b1d-4534-99a9-2210ffa36300/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/9d5af1a0-7337-449d-a306-3c08241ad500/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/fe38e66f-fecd-42d2-37b7-9d5690a67a00/Products"
+        ],
+        "discount": {
+          "name": "Save 20%",
+          "percentOff": 20
+        },
+        "countries": [],
+        "available": false,
+        "type": "Products"
+      },
+      {
+        "id": 2202010005,
+        "name": "XRP Army Tshirt",
+        "vendor": "Chimoney",
+        "product_type": "T-Shirt",
+        "created_at": "2022-01-18",
+        "handle": "xrp-army-tshirt",
+        "status": "active",
+        "tags": ["tshirts", "xrp"],
+        "price": 49.99,
+        "currency": "USD",
+        "sizes": ["S", "M", "L", "XL", "2XL"],
+        "variants": [
+          {
+            "name": "Black",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          },
+          {
+            "name": "White",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          },
+          {
+            "name": "Gray",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          },
+          {
+            "name": "Blue",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          }
+        ],
+        "images": [
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/68eb1dde-2f4f-476d-9c22-86a70e713500/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/2a2633ec-03f4-4faf-e8fb-a71017ad0d00/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/89853856-d93e-4493-154f-47a119576c00/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/1a5ba3e5-69c4-43ff-a160-04eb11413e00/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/002a7824-688e-4b27-fa64-343f1daa1900/Products"
+        ],
+        "discount": {
+          "name": "Save 20%",
+          "percentOff": 25
+        },
+        "countries": [],
+        "available": false,
+        "type": "Products"
+      },
+      {
+        "id": 2202010001,
+        "name": "To the Moon Cryto Tshirt",
+        "vendor": "Chimoney",
+        "product_type": "T-Shirt",
+        "created_at": "2022-01-18",
+        "handle": "to-the-moon-crypto-tshirt",
+        "status": "active",
+        "tags": ["tshirts"],
+        "price": 39.99,
+        "currency": "USD",
+        "sizes": ["S", "M", "L", "XL", "2XL"],
+        "variants": [
+          {
+            "name": "Black",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "White",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "Gray",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "Blue",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          }
+        ],
+        "images": [
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/aaadb6fa-a630-4358-97f9-3407d59fb100/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/701679d2-a88c-4ef3-6376-4c0a7afd7b00/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/cf00cd66-87cd-4687-24bf-1f09511b3700/Products"
+        ],
+        "discount": {
+          "name": "Save 20%",
+          "percentOff": 20
+        },
+        "countries": [],
+        "available": false,
+        "type": "Products"
+      },
+      {
+        "id": 2202010003,
+        "name": "HODL XRP Tshirt",
+        "vendor": "Chimoney",
+        "product_type": "T-Shirt",
+        "created_at": "2022-01-18",
+        "handle": "hodl-xrp-tshirt",
+        "status": "active",
+        "tags": ["tshirts", "xrp"],
+        "price": 49.99,
+        "currency": "USD",
+        "sizes": ["S", "M", "L", "XL", "2XL"],
+        "variants": [
+          {
+            "name": "Black",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          },
+          {
+            "name": "White",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          },
+          {
+            "name": "Gray",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          },
+          {
+            "name": "Blue",
+            "created_at": "2022-01-18",
+            "price": 49.99
+          }
+        ],
+        "images": [
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/b3b53a56-9daf-4b3b-df4d-d3bee880d600/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/22e4b007-08e4-4129-2af3-0357f46d5500/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/4d667ffc-238f-4ad0-9b66-7b8e4af14b00/Products"
+        ],
+        "discount": {
+          "name": "Save 20%",
+          "percentOff": 20
+        },
+        "countries": [],
+        "available": false,
+        "type": "Products"
+      },
+      {
+        "id": 2202010004,
+        "name": "Chimoney Tshirt",
+        "vendor": "Chimoney",
+        "product_type": "T-Shirt",
+        "created_at": "2022-01-18",
+        "handle": "chimoney-tshirt",
+        "status": "active",
+        "tags": ["tshirts", "chimoney"],
+        "price": 39.99,
+        "currency": "USD",
+        "sizes": ["S", "M", "L", "XL", "2XL"],
+        "variants": [
+          {
+            "name": "Black",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "White",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "Gray",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          },
+          {
+            "name": "Blue",
+            "created_at": "2022-01-18",
+            "price": 39.99
+          }
+        ],
+        "images": [
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/bc9695d9-e8d4-4d93-8dc2-72a2ee55ac00/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/e62732a0-3744-45ac-9771-99d3eee28800/Products",
+          "https://imagedelivery.net/tfkFdSWzWN_1uTF_tEsCWg/c5e724bd-1ee6-4b1b-0009-94fa3349b700/Products"
+        ],
+        "discount": {
+          "name": "Save 20%",
+          "percentOff": 40
+        },
+        "countries": [],
+        "available": false,
+        "type": "Products"
+      }
+    ]
+  }
+}
