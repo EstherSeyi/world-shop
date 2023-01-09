@@ -1,6 +1,18 @@
 import Image from "next/image";
 
+import { useCart } from "../hooks/cart";
+
+import Asset from "../types/asset";
+
 const CartItem = ({ asset }: any) => {
+  const { dispatch } = useCart();
+  const handleDelete = (asset: Asset) => {
+    dispatch({
+      type: "REMOVE",
+      asset,
+    });
+  };
+
   return (
     <li
       key={asset.id}
@@ -46,7 +58,12 @@ const CartItem = ({ asset }: any) => {
                 <option>3</option>
                 <option>4</option>
               </select>
-              <button className="text-bluish text-xs">Delete</button>
+              <button
+                className="text-bluish text-xs"
+                onClick={() => handleDelete(asset)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
