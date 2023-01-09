@@ -1,9 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     fontFamily: {
@@ -12,6 +11,7 @@ module.exports = {
     fontWeight: {
       light: "300",
       normal: "400",
+      medium: "500",
       bold: "700",
     },
     colors: {
@@ -21,8 +21,17 @@ module.exports = {
       red: "#B12704",
       successgreen: "#007600",
       darkgreen: "#067D62",
+      grey: "#DDDDDD",
+      white: "#FFFFFF",
     },
-    extend: {},
+    extend: {
+      screens: {
+        xs: "320px",
+      },
+      gridTemplateColumns: {
+        auto: "repeat(auto-fill, minmax(200px, 1fr))",
+      },
+    },
   },
   plugins: [],
 };
