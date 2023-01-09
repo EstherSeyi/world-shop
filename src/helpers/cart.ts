@@ -12,12 +12,12 @@ const addToCart = (state: State, asset: Asset) => {
     newCart.splice(assetIndex, 1, selectedAsset);
     return {
       cartItems: newCart,
-      totalNoOfItems: state.totalNoOfItems++,
+      totalNoOfItems: state.totalNoOfItems + 1,
     };
   } else {
     return {
       cartItems: [...state.cartItems, { ...asset, cart_quantity: 1 }],
-      totalNoOfItems: state.totalNoOfItems++,
+      totalNoOfItems: state.totalNoOfItems + 1,
     };
   }
 };
