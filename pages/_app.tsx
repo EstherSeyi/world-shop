@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Mulish } from "@next/font/google";
+import { Toaster } from "react-hot-toast";
+
+import { CartProvider } from "../src/hooks/cart";
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -15,7 +18,10 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${mulish.style.fontFamily};
         }
       `}</style>
-      <Component {...pageProps} />
+      <CartProvider>
+        <Component {...pageProps} />
+      </CartProvider>
+      <Toaster />
     </>
   );
 }
