@@ -9,7 +9,8 @@ const CartContext = createContext<{
   state: State;
   dispatch: Dispatch<{
     type: string;
-    payload: Asset;
+    asset?: Asset;
+    cartQuantity?: number;
   }>;
 } | null>(null);
 
