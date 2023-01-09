@@ -67,13 +67,13 @@ const removeFromCart = (state: State, asset: Asset) => {
 };
 
 /**
- * updateQuantityInCart
+ * changeQuantityInCart
  * @param state - cart state with `cartItems` and `totalNumberOfItems` properties
  * @param asset - selected asset whose quantity is to be updated
  * @param cartQuantity - amount to change current quantity to
  * @returns updated state after updating cart_quantity of selected cart item
  */
-const updateQuantityInCart = (
+const changeQuantityInCart = (
   state: State,
   asset: Asset,
   cartQuantity: number
@@ -121,8 +121,8 @@ export const cartReducer = (
       return addToCart(state, asset!);
     case "REMOVE":
       return removeFromCart(state, asset!);
-    case "UPDATE_QUANTITY":
-      return updateQuantityInCart(state, asset!, cartQuantity!);
+    case "CHANGE_QUANTITY":
+      return changeQuantityInCart(state, asset!, cartQuantity!);
     default:
       return state;
   }
