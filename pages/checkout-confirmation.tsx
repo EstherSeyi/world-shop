@@ -53,7 +53,7 @@ const ConfirmCheckout = () => {
             </div>
           </div>
         </section>
-        <section className="bg-white shadow py-6">
+        {/* <section className="bg-white shadow py-6">
           <div className="mx-auto w-11/12">
             <div className="flex flex-col sm:flex-row justify-between mb-8 sm:mb-0 text-sm">
               <div className="basis-1/2 sm:mr-4">
@@ -98,7 +98,7 @@ const ConfirmCheckout = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );
