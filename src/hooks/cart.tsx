@@ -1,29 +1,34 @@
-import { useReducer, createContext, Dispatch, useContext } from "react";
+import {
+  useReducer,
+  createContext,
+  Dispatch,
+  useContext,
+  useEffect,
+} from "react";
 
-import { CartItemType, State } from "../types/cart";
+import { CartActionType, State } from "../types/cart";
 
 import { cartReducer, cartInitialState } from "../helpers/cart";
 
 const CartContext = createContext<{
   state: State;
-  dispatch: Dispatch<{
-    type: string;
-    cartItem?: CartItemType;
-    cartQuantity?: number;
-  }>;
+  dispatch: Dispatch<CartActionType>;
 } | null>(null);
 
-const cartStateinitializer = () => {
-  if (typeof window !== "undefined") {
-    const cartString = localStorage.getItem("cart");
-
+const cartStateinitializer = (dispatch: Dispatch<CartActionType>) => {
+  const cartString = localStorage.getItem("cart");
+  if (cartString) {
     const cart = cartString && JSON.parse(cartString);
-    return cart
-      ? { cartItems: cart.items, totalNoOfItems: cart.totalNoOfItems }
-      : cartInitialState;
+    cart.hasOwnProperty("items") && cart.hasOwnProperty("totalNoOfItems")
+      ? dispatch({
+          type: "INITIALIZE_CART",
+          payload: {
+            cartItems: cart.items,
+            totalNoOfItems: cart.totalNoOfItems,
+          },
+        })
+      : null;
   }
-
-  return cartInitialState;
 };
 
 export const CartProvider = ({
@@ -31,11 +36,12 @@ export const CartProvider = ({
 }: {
   children: JSX.Element | JSX.Element[];
 }) => {
-  const [state, dispatch] = useReducer(
-    cartReducer,
-    cartInitialState,
-    cartStateinitializer
-  );
+  const [state, dispatch] = useReducer(cartReducer, cartInitialState);
+
+  useEffect(() => {
+    cartStateinitializer(dispatch);
+  }, []);
+
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}

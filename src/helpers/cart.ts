@@ -1,4 +1,4 @@
-import { CartItemType } from "../types/cart";
+import { CartActionType, CartItemType } from "../types/cart";
 import { State } from "../types/cart";
 import { updateCartDetails, storeCartDetails } from "./localstorage";
 
@@ -137,16 +137,9 @@ export const cartInitialState: State = {
 };
 export const cartReducer = (
   state: State,
-  {
-    type,
-    cartItem,
-    cartQuantity,
-  }: {
-    type: string;
-    cartItem?: CartItemType;
-    cartQuantity?: number;
-  }
+  { type, payload }: CartActionType
 ) => {
+  const { cartItem, cartQuantity, cartItems, totalNoOfItems } = payload;
   switch (type) {
     case "ADD":
       return addToCart(state, cartItem!);
@@ -154,6 +147,11 @@ export const cartReducer = (
       return removeFromCart(state, cartItem!);
     case "CHANGE_QUANTITY":
       return changeQuantityInCart(state, cartItem!, cartQuantity!);
+    case "INITIALIZE_CART":
+      return {
+        cartItems: cartItems ?? [],
+        totalNoOfItems: totalNoOfItems ?? 0,
+      };
     default:
       return state;
   }

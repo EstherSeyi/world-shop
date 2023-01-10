@@ -10,7 +10,9 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
   const handleDelete = (cartItem: CartItemType) => {
     dispatch({
       type: "REMOVE",
-      cartItem,
+      payload: {
+        cartItem,
+      },
     });
   };
 

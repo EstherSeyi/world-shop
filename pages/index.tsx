@@ -18,7 +18,10 @@ export default function Home() {
   const { dispatch } = useCart();
 
   const handleAddToCart = (asset: Asset) => {
-    dispatch({ type: "ADD", cartItem: { id: asset.id, quantity: 1 } });
+    dispatch({
+      type: "ADD",
+      payload: { cartItem: { id: asset.id, quantity: 1 } },
+    });
     toast(`${asset.name} added to cart`);
   };
 
