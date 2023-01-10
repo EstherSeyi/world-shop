@@ -7,7 +7,7 @@ import { useCart } from "../src/hooks/cart";
 import { CartItemType } from "../src/types/cart";
 
 const Cart = () => {
-  const { state } = useCart();
+  const { state, dispatch } = useCart();
 
   return (
     <main className="md:bg-[#ebeded] min-h-screen">
@@ -17,8 +17,19 @@ const Cart = () => {
           <div className="hidden md:block">
             <h1 className="text-3xl font-medium">Shopping Cart</h1>
             {state.cartItems.length ? (
-              <button className="font-medium text-bluish text-sm hover:font-bold focus:font-bold focus:underline focus:outline-none transition-all">
-                Deselect all items
+              <button
+                className="font-medium text-bluish text-sm hover:font-bold focus:font-bold focus:underline focus:outline-none transition-all"
+                onClick={() =>
+                  dispatch({
+                    type: "INITIALIZE_CART",
+                    payload: {
+                      cartItems: [],
+                      totalNoOfItems: 0,
+                    },
+                  })
+                }
+              >
+                Delete all items
               </button>
             ) : null}
             {/* <div>
