@@ -3,6 +3,7 @@ import { useMemo } from "react";
 
 import { useCart } from "../hooks/cart";
 import dummyData from "../assets/data.json";
+import { i18nCurrencyFormat } from "../helpers/format";
 
 import { CartItemType } from "../types/cart";
 import SelectQuantity from "./SelectQuantity";
@@ -22,20 +23,6 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
     () => dummyData.data.benefitsList.find((item) => item.id === cartItem.id),
     [cartItem.id]
   );
-
-  const handleSelectQty = (event: any) => {
-    if (Number(event.target.value) === 0) {
-      return handleDelete(cartItem);
-    } else {
-      return dispatch({
-        type: "CHANGE_QUANTITY",
-        payload: {
-          cartItem,
-          cartQuantity: Number(event.target.value),
-        },
-      });
-    }
-  };
 
   return (
     <li
@@ -60,7 +47,9 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
               {assetDetails?.name}
             </p>
             <p className="md:hidden mb-0.5 font-bold text-lg">
-              ${Number(assetDetails?.price) * cartItem.quantity!}
+              {i18nCurrencyFormat(assetDetails?.currency ?? "USD").format(
+                Number(assetDetails?.price) * cartItem.quantity!
+              )}
             </p>
             <p
               className={`text-xs ${
@@ -92,7 +81,9 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
         </div>
       </div>
       <p className="self-start hidden md:block font-bold ml-auto">
-        ${Number(assetDetails?.price) * cartItem.quantity!}
+        {i18nCurrencyFormat(assetDetails?.currency ?? "USD").format(
+          Number(assetDetails?.price) * cartItem.quantity!
+        )}
       </p>
     </li>
   );

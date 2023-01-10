@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import { useCart } from "../hooks/cart";
 import { CartItemType } from "../types/cart";
+import { i18nCurrencyFormat } from "../helpers/format";
 
 import dummyData from "../assets/data.json";
 
@@ -32,7 +33,7 @@ const SubTotal = () => {
             ({state.totalNoOfItems} item
             {`${state.totalNoOfItems > 1 ? "s" : ""}`})
           </span>
-          : <span>${totalCartValue}</span>
+          : <span>{i18nCurrencyFormat("USD").format(totalCartValue)}</span>
         </p>
       </div>
       <button className="my-2 py-3 bg-yellow w-full rounded-md text-sm font-medium">
