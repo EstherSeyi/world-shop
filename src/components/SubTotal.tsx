@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useRouter } from "next/router";
 
 import { useCart } from "../hooks/cart";
 import { CartItemType } from "../types/cart";
@@ -6,7 +7,7 @@ import { i18nCurrencyFormat } from "../helpers/format";
 
 import dummyData from "../assets/data.json";
 
-const calculateTotalCartValue = (cart: CartItemType[]) => {
+export const calculateTotalCartValue = (cart: CartItemType[]) => {
   return cart?.reduce((acc: number, item: CartItemType) => {
     const currentItemDetails = dummyData.data.benefitsList.find(
       (asset) => asset.id === item.id
@@ -16,6 +17,7 @@ const calculateTotalCartValue = (cart: CartItemType[]) => {
 };
 
 const SubTotal = () => {
+  const router = useRouter();
   const { state } = useCart();
 
   const totalCartValue = useMemo(
@@ -23,6 +25,12 @@ const SubTotal = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [JSON.stringify(state.cartItems)]
   );
+
+  const handleProceedToCheckout = () => {
+    if (totalCartValue) {
+      router.push("/checkout-confirmation");
+    }
+  };
 
   return (
     <aside className="md:order-1  md:bg-white md:px-2.5 md:py-4 mb-4 md:mb-0 border-b border-grey md:border-0 md:basis-3/12 md:self-start">
@@ -36,7 +44,10 @@ const SubTotal = () => {
           : <span>{i18nCurrencyFormat("USD").format(totalCartValue)}</span>
         </p>
       </div>
-      <button className="my-2 py-3 bg-yellow w-full rounded-md text-sm font-medium">
+      <button
+        className="my-2 py-3 bg-yellow w-full rounded-md text-sm font-medium"
+        onClick={handleProceedToCheckout}
+      >
         Proceed to checkout{" "}
         <span className="inline md:hidden">
           ({state.totalNoOfItems} item
