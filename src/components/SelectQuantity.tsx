@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as Select from "@radix-ui/react-select";
 
 import { useCart } from "../hooks/cart";
 
@@ -35,7 +36,7 @@ const SelectQuantity = ({ cartItem, handleDelete }: any) => {
   };
   return (
     <>
-      {showTextInput ? (
+      {showTextInput || cartItem.quantity >= 10 ? (
         <form onSubmit={handleSubmit}>
           <input
             name="quantity"
@@ -52,7 +53,7 @@ const SelectQuantity = ({ cartItem, handleDelete }: any) => {
           </button>
         </form>
       ) : (
-        <label htmlFor="selectqty" className="relative block">
+        <div className="relative block">
           <select
             id="selectqty"
             className="mr-2 focus:outline-none cursor-pointer focus:scale-105"
@@ -67,10 +68,13 @@ const SelectQuantity = ({ cartItem, handleDelete }: any) => {
               );
             })}
           </select>
-          <span className="pl-2 pr-2.5 py-0.5 shadow text-sm rounded-md bg-[#f0f2f2] absolute left-[2px]">
+          <label
+            htmlFor="selectqty"
+            className="pl-2 pr-2.5 py-0.5 shadow text-sm rounded-md bg-[#f0f2f2] absolute left-[2px]"
+          >
             Qty: {cartItem.quantity}
-          </span>
-        </label>
+          </label>
+        </div>
       )}
     </>
   );
