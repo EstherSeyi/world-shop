@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <main className=" mx-auto w-11/12 max-w-7xl py-8">
-      <h1 className="mb-8 text-xl sm:text-3xl font-medium">Supported Assets</h1>
+      <h1 className="text-xl sm:text-3xl font-medium">Supported Assets</h1>
       <CartCount />
       <section className="grid grid-cols-auto gap-8">
         {dummyData?.data?.benefitsList.map((asset) => (
