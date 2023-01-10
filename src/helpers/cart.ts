@@ -1,5 +1,6 @@
-import Asset from "../types/asset";
+import { CartItemType } from "../types/cart";
 import { State } from "../types/cart";
+import { updateCartDetails, storeCartDetails } from "./localstorage";
 
 /**
  * addToCart - This function adds an asset to cart
@@ -7,33 +8,49 @@ import { State } from "../types/cart";
  * @param asset - selected asset to be added to cart
  * @returns - updated state including newly added asset
  */
-const addToCart = (state: State, asset: Asset) => {
+const addToCart = (state: State, cartItem: CartItemType) => {
   // find index of selected asset
-  const assetIndex = state.cartItems.findIndex((item) => item.id === asset.id);
-  if (assetIndex !== -1) {
+  const cartItemIndex = state.cartItems.findIndex(
+    (item) => item.id === cartItem.id
+  );
+  const totalNoOfItems = state.totalNoOfItems + cartItem.quantity;
+  if (cartItemIndex !== -1) {
     //if asset exist we want to increase cart quantity.
 
     // create replacement object for selected asset with updated quantity
     const selectedAsset = {
-      ...state.cartItems[assetIndex],
-      cart_quantity: state.cartItems[assetIndex].cart_quantity! + 1,
+      id: state.cartItems[cartItemIndex].id,
+      quantity: state.cartItems[cartItemIndex].quantity! + cartItem.quantity,
     };
 
     // make copy of cart
     const newCart = [...state.cartItems];
 
     // replace selcted asset in cart
-    newCart.splice(assetIndex, 1, selectedAsset);
+    newCart.splice(cartItemIndex, 1, selectedAsset);
+
+    //store data in local storage
+    storeCartDetails(newCart, totalNoOfItems);
+
     return {
       cartItems: newCart,
-      totalNoOfItems: state.totalNoOfItems + 1,
+      totalNoOfItems,
     };
   } else {
-    // if asset doesn't already exist, add to cart items,add cart_quantity property
+    //store data in localStorage
+    storeCartDetails(
+      [...state.cartItems, { id: cartItem.id, quantity: cartItem.quantity }],
+      totalNoOfItems
+    );
+
+    // if cartItem doesn't already exist, add to cart items,add cart_quantity property
     // and increase totalNoOfItems by 1
     return {
-      cartItems: [...state.cartItems, { ...asset, cart_quantity: 1 }],
-      totalNoOfItems: state.totalNoOfItems + 1,
+      cartItems: [
+        ...state.cartItems,
+        { id: cartItem.id, quantity: cartItem.quantity },
+      ],
+      totalNoOfItems,
     };
   }
 };
@@ -44,19 +61,24 @@ const addToCart = (state: State, asset: Asset) => {
  * @param asset - selected asset to be added to cart
  * @returns updated state after deleting selected cart item
  */
-const removeFromCart = (state: State, asset: Asset) => {
+const removeFromCart = (state: State, cartItem: CartItemType) => {
   // find index of selected asset
-  const assetIndex = state.cartItems.findIndex((item) => item.id === asset.id);
+  const assetIndex = state.cartItems.findIndex(
+    (item) => item.id === cartItem.id
+  );
   if (assetIndex !== -1) {
     // decrease totalNoOfItems by total number of selected asset in the cart.
-    const totalNoOfItems =
-      state.totalNoOfItems - state.cartItems[assetIndex].cart_quantity!;
+    const totalNoOfItems = state.totalNoOfItems - cartItem.quantity!;
 
     // copy cart to not directly mutate state
     const newCart = [...state.cartItems];
 
     // remove selcted asset from cart
     newCart.splice(assetIndex, 1);
+
+    //update cart data in localStorage
+    updateCartDetails(newCart, totalNoOfItems);
+
     return {
       cartItems: newCart,
       totalNoOfItems,
@@ -75,26 +97,31 @@ const removeFromCart = (state: State, asset: Asset) => {
  */
 const changeQuantityInCart = (
   state: State,
-  asset: Asset,
+  cartItem: CartItemType,
   cartQuantity: number
 ) => {
-  const assetIndex = state.cartItems.findIndex((item) => item.id === asset.id);
+  const assetIndex = state.cartItems.findIndex(
+    (item) => item.id === cartItem.id
+  );
   if (assetIndex !== -1) {
     // change cart quantity of selected asset to newly chosen quantity
     const selectedAsset = {
-      ...state.cartItems[assetIndex],
-      cart_quantity: cartQuantity,
+      id: state.cartItems[assetIndex].id,
+      quantity: cartQuantity,
     };
 
     // remove current cart quatity of selected asset in totalNoOfItems
     const totalNoOfItems =
-      state.totalNoOfItems - state.cartItems[assetIndex].cart_quantity!;
+      state.totalNoOfItems - state.cartItems[assetIndex].quantity!;
 
     // make copy of cart
     const newCart = [...state.cartItems];
 
     // replace selected asset
     newCart.splice(assetIndex, 1, selectedAsset);
+
+    //update cart data in localStorage
+    updateCartDetails(newCart, totalNoOfItems + cartQuantity);
     return {
       cartItems: newCart,
       totalNoOfItems: totalNoOfItems + cartQuantity,
@@ -112,17 +139,21 @@ export const cartReducer = (
   state: State,
   {
     type,
-    asset,
+    cartItem,
     cartQuantity,
-  }: { type: string; asset?: Asset; cartQuantity?: number }
+  }: {
+    type: string;
+    cartItem?: CartItemType;
+    cartQuantity?: number;
+  }
 ) => {
   switch (type) {
     case "ADD":
-      return addToCart(state, asset!);
+      return addToCart(state, cartItem!);
     case "REMOVE":
-      return removeFromCart(state, asset!);
+      return removeFromCart(state, cartItem!);
     case "CHANGE_QUANTITY":
-      return changeQuantityInCart(state, asset!, cartQuantity!);
+      return changeQuantityInCart(state, cartItem!, cartQuantity!);
     default:
       return state;
   }

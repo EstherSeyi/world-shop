@@ -4,7 +4,7 @@ import CartItem from "../src/components/CartItem";
 import SubTotal from "../src/components/SubTotal";
 
 import { useCart } from "../src/hooks/cart";
-import Asset from "../src/types/asset";
+import { CartItemType } from "../src/types/cart";
 
 const Cart = () => {
   const { state } = useCart();
@@ -47,8 +47,8 @@ const Cart = () => {
           )}
 
           <ul>
-            {state.cartItems.map((asset: Asset) => (
-              <CartItem key={asset.id} asset={asset} />
+            {state.cartItems.map((cartItem: CartItemType) => (
+              <CartItem key={cartItem.id} cartItem={cartItem} />
             ))}
           </ul>
         </section>

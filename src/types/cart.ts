@@ -1,5 +1,5 @@
-import Asset from "../types/asset";
+export type CartItemType = { id: number; quantity: number };
 export type State = {
-  cartItems: [] | Asset[];
+  cartItems: [] | CartItemType[];
   totalNoOfItems: number;
 };

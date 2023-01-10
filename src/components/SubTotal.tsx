@@ -1,11 +1,16 @@
 import { useMemo } from "react";
 
 import { useCart } from "../hooks/cart";
-import Asset from "../types/asset";
+import { CartItemType } from "../types/cart";
 
-const calculateTotalCartValue = (cart: Asset[]) => {
-  return cart?.reduce((acc: number, item: Asset) => {
-    return acc + item.price * item.cart_quantity!;
+import dummyData from "../assets/data.json";
+
+const calculateTotalCartValue = (cart: CartItemType[]) => {
+  return cart?.reduce((acc: number, item: CartItemType) => {
+    const currentItemDetails = dummyData.data.benefitsList.find(
+      (asset) => asset.id === item.id
+    );
+    return acc + (currentItemDetails?.price ?? 0) * item.quantity!;
   }, 0);
 };
 
