@@ -29,8 +29,6 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
       key={cartItem.id}
       className="flex items-start md:items-center mb-10 bg-[#f8f9fa] md:bg-white p-2 xs:p-3 md:p-0 md:pb-5 rounded md:rounded-none  md:border-b border-grey"
     >
-      {/* <input type="checkbox" className="mr-4 flex-shrink-0 hidden xs:block" /> */}
-
       <div className="flex flex-col gap-4 xs:items-start xs:flex-row flex-grow">
         <div className="relative w-full xs:w-32 aspect-square flex-shrink-0">
           <Image
@@ -40,8 +38,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
             fill
           />
         </div>
-        <div className="xs:flex-grow flex">
-          <input type="checkbox" className="mr-4 flex-shrink-0  xs:hidden" />
+        <div className="xs:flex-grow flex px-4 xs:px-4">
           <div className="flex-grow">
             <p className="mb-0.5 md:text-lg font-medium text-sm">
               {assetDetails?.name}
