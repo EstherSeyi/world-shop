@@ -1,7 +1,6 @@
 import { useReducer, createContext, Dispatch, useContext } from "react";
 
-import Asset from "../types/asset";
-import { State } from "../types/cart";
+import { CartItemType, State } from "../types/cart";
 
 import { cartReducer, cartInitialState } from "../helpers/cart";
 
@@ -9,17 +8,34 @@ const CartContext = createContext<{
   state: State;
   dispatch: Dispatch<{
     type: string;
-    asset?: Asset;
+    cartItem?: CartItemType;
     cartQuantity?: number;
   }>;
 } | null>(null);
+
+const cartStateinitializer = () => {
+  if (typeof window !== "undefined") {
+    const cartString = localStorage.getItem("cart");
+
+    const cart = cartString && JSON.parse(cartString);
+    return cart
+      ? { cartItems: cart.items, totalNoOfItems: cart.totalNoOfItems }
+      : cartInitialState;
+  }
+
+  return cartInitialState;
+};
 
 export const CartProvider = ({
   children,
 }: {
   children: JSX.Element | JSX.Element[];
 }) => {
-  const [state, dispatch] = useReducer(cartReducer, cartInitialState);
+  const [state, dispatch] = useReducer(
+    cartReducer,
+    cartInitialState,
+    cartStateinitializer
+  );
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}
