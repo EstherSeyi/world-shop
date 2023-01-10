@@ -52,15 +52,16 @@ const SelectQuantity = ({ cartItem, handleDelete }: any) => {
           </button>
         </form>
       ) : (
-        <div className="relative">
+        <label htmlFor="selectqty" className="relative block">
           <select
+            id="selectqty"
             className="mr-2 focus:outline-none cursor-pointer focus:scale-105"
             value={cartItem.quantity}
             onChange={handleSelectQty}
           >
             {new Array(11).fill(0, 0, 12).map((_, index) => {
               return (
-                <option key={index} value={index}>
+                <option className="text-xs" key={index} value={index}>
                   {index === 0 ? "0 (Delete)" : index === 10 ? "10+" : index}
                 </option>
               );
@@ -69,7 +70,7 @@ const SelectQuantity = ({ cartItem, handleDelete }: any) => {
           <span className="pl-2 pr-2.5 py-0.5 shadow text-sm rounded-md bg-[#f0f2f2] absolute left-[2px]">
             Qty: {cartItem.quantity}
           </span>
-        </div>
+        </label>
       )}
     </>
   );
