@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { ChangeEvent, useMemo } from "react";
+import { useMemo } from "react";
 
 import { useCart } from "../hooks/cart";
 import dummyData from "../assets/data.json";
 
 import { CartItemType } from "../types/cart";
+import SelectQuantity from "./SelectQuantity";
 
 const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
   const { dispatch } = useCart();
@@ -79,28 +80,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
             </p>
             <p className="text-xs">Size: {assetDetails?.sizes[0]}</p>
             <div className="mt-1 xs:mt-3 md:mt-4">
-              <div className="relative">
-                <select
-                  className="mr-2 focus:outline-none cursor-pointer focus:scale-105"
-                  value={cartItem.quantity}
-                  onChange={handleSelectQty}
-                >
-                  {new Array(11).fill(0, 0, 12).map((_, index) => {
-                    return (
-                      <option key={index} value={index}>
-                        {index === 0
-                          ? "0 (Delete)"
-                          : index === 10
-                          ? "10+"
-                          : index}
-                      </option>
-                    );
-                  })}
-                </select>
-                <span className="pl-2 pr-4 py-0.5 shadow text-sm rounded-md bg-[#f0f2f2] absolute left-[2px]">
-                  Qty: {cartItem.quantity}
-                </span>
-              </div>
+              <SelectQuantity cartItem={cartItem} handleDelete={handleDelete} />
               <button
                 className="text-bluish text-xs focus:outline-none focus:underline hover:underline transition-all"
                 onClick={() => handleDelete(cartItem)}
