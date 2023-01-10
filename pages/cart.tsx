@@ -11,6 +11,14 @@ const Cart = () => {
 
   return (
     <main className="md:bg-[#ebeded] min-h-screen">
+      <div className="w-11/12 mx-auto max-w-7xl pt-4">
+        <Link
+          href="/"
+          className="text-bluish text-sm underline hover:font-bold focus:font-bold transition-all focus:outline-none"
+        >
+          Go back to Products Page
+        </Link>
+      </div>
       <section className="flex flex-col md:flex-row justify-between w-11/12 mx-auto py-4 md:py-8 text-black text-base max-w-7xl">
         <SubTotal />
         <section className="md:basis-9/12 md:bg-white  md:mr-4 xs:p-4">
