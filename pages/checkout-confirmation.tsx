@@ -31,7 +31,7 @@ const ConfirmCheckout = () => {
   };
 
   return (
-    <main className="md:bg-[#ebeded] min-h-screen">
+    <>
       <div className="w-11/12 mx-auto max-w-7xl pt-4">
         <Link
           href="/cart"
@@ -78,54 +78,8 @@ const ConfirmCheckout = () => {
             </div>
           </div>
         </section>
-        {/* <section className="bg-white shadow py-6">
-          <div className="mx-auto w-11/12">
-            <div className="flex flex-col sm:flex-row justify-between mb-8 sm:mb-0 text-sm">
-              <div className="basis-1/2 sm:mr-4">
-                <h2 className="text-xl font-medium mb-2 border-b border-dashed pb-4">
-                  Your Information
-                </h2>
-                <p className="mb-2 font-bold">May Peng</p>
-                <p>mpeng@gmail.com</p>
-              </div>
-              <div className="basis-1/2 sm:ml-4 mt-8 sm:mt-0">
-                <h2 className="text-xl font-medium mb-2 border-b border-dashed pb-4">
-                  Shipping Address
-                </h2>
-                <p className="mb-2 font-bold">May Peng</p>
-                <div>
-                  <p>19 Daniel Makinde Str</p>
-                  <p>Adekunle, Yaba</p>
-                  <p>Lagos State</p>
-                  <p>(234) 806 558 9871</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-between mt-8 sm:mb-0 text-sm">
-              <div className="basis-1/2 sm:mr-4">
-                <h2 className="text-xl font-medium mb-2 border-b border-dashed pb-4">
-                  Payment
-                </h2>
-                <p>VISA</p>
-                <p>Visa card ending in 1234</p>
-              </div>
-              <div className="basis-1/2 sm:ml-4 mt-8 sm:mt-0">
-                <h2 className="text-xl font-medium mb-2 border-b border-dashed pb-4">
-                  Billing Address
-                </h2>
-                <p className="mb-2 font-bold">May Peng</p>
-                <div>
-                  <p>19 Daniel Makinde Str</p>
-                  <p>Adekunle, Yaba</p>
-                  <p>Lagos State</p>
-                  <p>(234) 806 558 9871</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
       </div>
-    </main>
+    </>
   );
 };
 
