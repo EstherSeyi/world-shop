@@ -1,31 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import testpic from "../assets/testpic.png";
-import { useCart } from "../hooks/cart";
+import { i18nCurrencyFormat } from "../helpers/format";
 import { GiftcardType } from "../types/giftcards";
-import SelectQuantity from "./SelectQuantity";
 
 const CartPopup = ({
   product,
   amount,
 }: {
-  product: GiftcardType | null | any;
+  product: GiftcardType | null;
   amount: number;
 }) => {
-  const { dispatch } = useCart();
   const cartItem = {
     id: product?.productId!,
     quantity: product?.cartQuantity!,
     amount,
-  };
-  const handleDelete = () => {
-    dispatch({
-      type: "REMOVE",
-      payload: {
-        cartItem,
-      },
-    });
   };
 
   return (
@@ -43,14 +32,16 @@ const CartPopup = ({
             <span> added to cart!</span>
           </p>
         </div>
-        <SelectQuantity
-          cartItem={{
-            id: product?.productId,
-            quantity: product?.cartQuantity,
-            amount,
-          }}
-          handleDelete={handleDelete}
-        />
+        <div>
+          <p>Qty: {cartItem.quantity}</p>
+        </div>
+        <div>
+          <p>
+            {i18nCurrencyFormat(product?.recipientCurrencyCode!).format(
+              cartItem.amount * cartItem.quantity
+            )}
+          </p>
+        </div>
       </div>
       <div className="border-t border-grey py-2 flex justify-center">
         <Link

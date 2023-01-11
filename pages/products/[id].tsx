@@ -1,6 +1,5 @@
 import * as Select from "@radix-ui/react-select";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -11,7 +10,6 @@ import CartCount from "../../src/components/CartCount";
 import { useProductDetail } from "../../src/hooks/product";
 import { i18nCurrencyFormat } from "../../src/helpers/format";
 import { getDenominationRange } from "../../src/helpers/giftcard";
-import SelectQuantity from "../../src/components/SelectQuantity";
 import { GiftcardType } from "../../src/types/giftcards";
 import { useCart } from "../../src/hooks/cart";
 import CartPopup from "../../src/components/CartPopup";
@@ -25,8 +23,6 @@ const getDefaultAmount = (giftcard: GiftcardType | null) => {
 };
 
 const Product = () => {
-  const router = useRouter();
-  const { id } = router.query;
   const { dispatch } = useCart();
   const { product } = useProductDetail();
   const defaultAmount = getDefaultAmount(product);
@@ -39,7 +35,13 @@ const Product = () => {
       payload: { cartItem: { id: product?.productId!, quantity: 1, amount } },
     });
     toast.custom(
-      <CartPopup product={{ ...product, cartQuantity: 1 }} amount={amount} />
+      <CartPopup
+        product={{ ...product, cartQuantity: 1 } as GiftcardType}
+        amount={amount}
+      />,
+      {
+        duration: 4000,
+      }
     );
   };
 
