@@ -45,7 +45,8 @@ const SubTotal = () => {
         </p>
       </div>
       <button
-        className="my-2 py-3 bg-yellow w-full rounded-md text-sm font-medium"
+        disabled={state.cartItems.length === 0}
+        className="my-2 py-3 bg-yellow w-full rounded-md text-sm font-medium disabled:opacity-70 disabled:cursor-not-allowed"
         onClick={handleProceedToCheckout}
       >
         Proceed to checkout{" "}
