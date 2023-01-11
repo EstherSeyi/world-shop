@@ -1,16 +1,31 @@
 import Link from "next/link";
+import { useMemo } from "react";
 
 import CartItem from "../src/components/CartItem";
 import SubTotal from "../src/components/SubTotal";
 
 import { useCart } from "../src/hooks/cart";
-import { CartItemType } from "../src/types/cart";
+import { useAppQuery } from "../src/hooks/queries";
+import { getCartItemsDetails } from "../src/helpers/cart";
 
 const Cart = () => {
   const { state, dispatch } = useCart();
 
+  const { data, isLoading } = useAppQuery("assets", {
+    url: "/v0.2/info/assets",
+  });
+
+  const giftCardsDetails = useMemo(
+    () =>
+      getCartItemsDetails(
+        state.cartItems,
+        data?.data?.giftCardsRLD?.content ?? []
+      ),
+    [data?.data?.giftCardsRLD?.content, state.cartItems]
+  );
+
   return (
-    <main className="md:bg-[#ebeded] min-h-screen">
+    <>
       <div className="w-11/12 mx-auto max-w-7xl pt-4">
         <Link
           href="/"
@@ -63,13 +78,19 @@ const Cart = () => {
           )}
 
           <ul>
-            {state.cartItems.map((cartItem: CartItemType) => (
-              <CartItem key={cartItem.id} cartItem={cartItem} />
-            ))}
+            {!isLoading
+              ? giftCardsDetails?.length &&
+                giftCardsDetails?.map((giftcard) => (
+                  <CartItem
+                    key={`${giftcard.productId}_${giftcard.name}`}
+                    giftcard={giftcard}
+                  />
+                ))
+              : null}
           </ul>
         </section>
       </section>
-    </main>
+    </>
   );
 };
 
