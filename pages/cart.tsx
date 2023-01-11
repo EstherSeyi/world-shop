@@ -40,9 +40,6 @@ const Cart = () => {
                 Delete all items
               </button>
             ) : null}
-            {/* <div>
-          No items selected.<button>Select all items</button>
-        </div> */}
           </div>
           <div className="hidden md:flex justify-end  border-b border-grey mb-6 mt-1">
             {state.cartItems.length ? (
