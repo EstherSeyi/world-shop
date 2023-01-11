@@ -1,5 +1,6 @@
 import { CartActionType, CartItemType } from "../types/cart";
 import { State } from "../types/cart";
+import { GiftcardType } from "../types/giftcards";
 import { updateCartDetails, storeCartDetails } from "./localstorage";
 
 /**
@@ -162,4 +163,19 @@ export const cartReducer = (
     default:
       return state;
   }
+};
+
+export const getCartItemsDetails = (
+  cartItems: CartItemType[],
+  giftcards: GiftcardType[]
+) => {
+  return cartItems.map((item) => {
+    const detail = giftcards.find(
+      (giftcard: GiftcardType) => item.id === giftcard.productId
+    );
+    return {
+      ...detail,
+      cartQuantity: item.quantity,
+    } as GiftcardType;
+  });
 };
