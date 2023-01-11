@@ -22,6 +22,7 @@ const addToCart = (state: State, cartItem: CartItemType) => {
     const selectedAsset = {
       id: state.cartItems[cartItemIndex].id,
       quantity: state.cartItems[cartItemIndex].quantity! + cartItem.quantity,
+      amount: cartItem.amount,
     };
 
     // make copy of cart
@@ -40,7 +41,14 @@ const addToCart = (state: State, cartItem: CartItemType) => {
   } else {
     //store data in localStorage
     storeCartDetails(
-      [...state.cartItems, { id: cartItem.id, quantity: cartItem.quantity }],
+      [
+        ...state.cartItems,
+        {
+          id: cartItem.id,
+          quantity: cartItem.quantity,
+          amount: cartItem.amount,
+        },
+      ],
       totalNoOfItems
     );
 
@@ -49,7 +57,11 @@ const addToCart = (state: State, cartItem: CartItemType) => {
     return {
       cartItems: [
         ...state.cartItems,
-        { id: cartItem.id, quantity: cartItem.quantity },
+        {
+          id: cartItem.id,
+          quantity: cartItem.quantity,
+          amount: cartItem.amount,
+        },
       ],
       totalNoOfItems,
     };
@@ -109,6 +121,7 @@ const changeQuantityInCart = (
     const selectedAsset = {
       id: state.cartItems[assetIndex].id,
       quantity: cartQuantity,
+      amount: cartItem.amount,
     };
 
     // remove current cart quatity of selected asset in totalNoOfItems
@@ -176,6 +189,7 @@ export const getCartItemsDetails = (
     return {
       ...detail,
       cartQuantity: item.quantity,
+      amount: item.amount,
     } as GiftcardType;
   });
 };

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 import CartCount from "../../src/components/CartCount";
 
@@ -10,16 +12,37 @@ import { useProductDetail } from "../../src/hooks/product";
 import { i18nCurrencyFormat } from "../../src/helpers/format";
 import { getDenominationRange } from "../../src/helpers/giftcard";
 import SelectQuantity from "../../src/components/SelectQuantity";
+import { GiftcardType } from "../../src/types/giftcards";
+import { useCart } from "../../src/hooks/cart";
+import CartPopup from "../../src/components/CartPopup";
+
+const getDefaultAmount = (giftcard: GiftcardType | null) => {
+  return giftcard?.denominationType === "FIXED"
+    ? giftcard?.fixedRecipientDenominations![0]
+    : giftcard?.denominationType === "RANGE"
+    ? giftcard?.minRecipientDenomination
+    : 0;
+};
 
 const Product = () => {
   const router = useRouter();
   const { id } = router.query;
-
+  const { dispatch } = useCart();
   const { product } = useProductDetail();
+  const defaultAmount = getDefaultAmount(product);
+  const [amount, setAmount] = useState(defaultAmount);
 
-  console.log({ product });
+  const handleAddToCart = (event: any) => {
+    event.preventDefault();
+    dispatch({
+      type: "ADD",
+      payload: { cartItem: { id: product?.productId!, quantity: 1, amount } },
+    });
+    toast.custom(
+      <CartPopup product={{ ...product, cartQuantity: 1 }} amount={amount} />
+    );
+  };
 
-  console.log({ id });
   return (
     <section className=" mx-auto w-11/12 max-w-6xl py-8">
       <div>
@@ -46,20 +69,24 @@ const Product = () => {
             <h1 className="text-2xl font-bold mb-2">{product?.name}</h1>
             <p className="text-light">{product?.description}</p>
             {/* select below */}
-            <form className="mt-5">
+            <form className="mt-5" onSubmit={handleAddToCart}>
               <div className="flex flex-col xxs:flex-row">
                 <div className="relative">
                   <p className="mb-1 text-lg font-medium">Select Amount</p>
                   <Select.Root
-                  // value={cartItem.quantity}
-                  // onValueChange={handleSelectQty}
+                    value={amount.toString()}
+                    onValueChange={(selected) => {
+                      setAmount(Number(selected));
+                    }}
                   >
                     <Select.Trigger
                       className="flex items-center justify-between gap-4 w-40 text-sm rounded-md border border-bluish focus:outline-bluish  px-2 py-1.5"
                       aria-label="Item Amount"
                     >
                       <Select.Value placeholder={getDenominationRange(product)}>
-                        <span className="cursor-pointer">Amount: $5.00</span>
+                        <span className="cursor-pointer">
+                          Amount: {i18nCurrencyFormat("USD").format(amount)}
+                        </span>
                       </Select.Value>
                       <Select.Icon
                         className="w-4 flex items-center justify-center"
@@ -96,15 +123,6 @@ const Product = () => {
                       </Select.Viewport>
                     </Select.Content>
                   </Select.Root>
-                </div>
-                <div className="mt-4 xxs:mt-0 xxs:self-end xxs:ml-8">
-                  <SelectQuantity
-                    cartItem={{
-                      id: product?.productId,
-                      quantity: 1,
-                    }}
-                    handleDelete={() => console.log("deleting")}
-                  />
                 </div>
               </div>
               <button

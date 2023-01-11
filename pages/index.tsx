@@ -15,23 +15,11 @@ const CartCount = dynamic(() => import("../src/components/CartCount"), {
 });
 
 export default function Home() {
-  const { dispatch } = useCart();
-
   const { data, isLoading, error } = useAppQuery("assets", {
     url: "/v0.2/info/assets",
   });
 
   const giftcards = data?.data?.giftCardsRLD?.content ?? [];
-
-  console.log({ giftcards });
-
-  const handleAddToCart = (giftcard: GiftcardType) => {
-    dispatch({
-      type: "ADD",
-      payload: { cartItem: { id: giftcard.productId, quantity: 1 } },
-    });
-    toast(<div>`${giftcard.name} added to cart`</div>);
-  };
 
   return (
     <section className=" mx-auto w-11/12 max-w-7xl py-8">

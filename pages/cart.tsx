@@ -11,7 +11,7 @@ import { getCartItemsDetails } from "../src/helpers/cart";
 const Cart = () => {
   const { state, dispatch } = useCart();
 
-  const { data, isLoading } = useAppQuery("assets", {
+  const { data, isLoading, error } = useAppQuery("assets", {
     url: "/v0.2/info/assets",
   });
 
@@ -39,7 +39,16 @@ const Cart = () => {
         <section className="md:basis-9/12 md:bg-white  md:mr-4 xs:p-4">
           <div className="hidden md:block">
             <h1 className="text-3xl font-medium">Shopping Cart</h1>
-            {state.cartItems.length ? (
+            {isLoading ? (
+              <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px]">
+                Loading...
+              </div>
+            ) : error ? (
+              <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px] text-center">
+                <p className="mb-2">Ooops! This embarassing...</p>
+                <p>Please refresh</p>
+              </div>
+            ) : state.cartItems.length ? (
               <button
                 className="font-medium text-bluish text-sm hover:font-bold focus:font-bold focus:underline focus:outline-none transition-all"
                 onClick={() =>
@@ -61,7 +70,7 @@ const Cart = () => {
               <p className="text-sm m-0">Price</p>
             ) : null}
           </div>
-          {!state.cartItems.length && (
+          {!state.cartItems.length ? (
             <div className="text-sm">
               <p className="mb-8">
                 Your cart is currently empty! Add some items to checkout.
@@ -75,7 +84,7 @@ const Cart = () => {
                 </Link>
               </p>
             </div>
-          )}
+          ) : null}
 
           <ul>
             {!isLoading

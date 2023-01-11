@@ -1,4 +1,4 @@
-export type CartItemType = { id: number; quantity: number };
+export type CartItemType = { id: number; quantity: number; amount: number };
 export type State = {
   cartItems: [] | CartItemType[];
   totalNoOfItems: number;

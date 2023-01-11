@@ -34,4 +34,5 @@ export type GiftcardType = {
   senderFeePercentage: number;
   type: string;
   cartQuantity?: number;
+  amount?: number;
 };

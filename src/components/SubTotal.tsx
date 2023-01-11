@@ -5,14 +5,9 @@ import { useCart } from "../hooks/cart";
 import { CartItemType } from "../types/cart";
 import { i18nCurrencyFormat } from "../helpers/format";
 
-import dummyData from "../assets/data.json";
-
 export const calculateTotalCartValue = (cart: CartItemType[]) => {
   return cart?.reduce((acc: number, item: CartItemType) => {
-    const currentItemDetails = dummyData.data.benefitsList.find(
-      (asset) => asset.id === item.id
-    );
-    return acc + (currentItemDetails?.price ?? 0) * item.quantity!;
+    return acc + (item?.amount ?? 0) * item.quantity!;
   }, 0);
 };
 

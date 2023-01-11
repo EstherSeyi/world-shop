@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useMemo } from "react";
 
 import { useCart } from "../hooks/cart";
 import { i18nCurrencyFormat } from "../helpers/format";
@@ -61,6 +60,7 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
                 cartItem={{
                   id: giftcard.productId,
                   quantity: giftcard.cartQuantity,
+                  amount: giftcard.amount as number,
                 }}
                 handleDelete={handleDelete}
               />
@@ -70,6 +70,7 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
                   handleDelete({
                     id: giftcard.productId,
                     quantity: giftcard.cartQuantity!,
+                    amount: giftcard.amount as number,
                   })
                 }
               >
@@ -80,10 +81,9 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
         </div>
       </div>
       <p className="self-start hidden md:block font-bold ml-auto">
-        price
-        {/* {i18nCurrencyFormat(assetDetails?.currency ?? "USD").format(
-          Number(assetDetails?.price) * cartItem.quantity!
-        )} */}
+        {i18nCurrencyFormat(giftcard.recipientCurrencyCode ?? "USD").format(
+          giftcard?.amount! * giftcard?.cartQuantity!
+        )}
       </p>
     </li>
   );
