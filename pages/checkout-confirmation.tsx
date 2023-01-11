@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import Link from "next/link";
 
 import { useCart } from "../src/hooks/cart";
 import { calculateTotalCartValue } from "../src/components/SubTotal";
@@ -18,6 +19,14 @@ const ConfirmCheckout = () => {
 
   return (
     <main className="md:bg-[#ebeded] min-h-screen">
+      <div className="w-11/12 mx-auto max-w-7xl pt-4">
+        <Link
+          href="/cart"
+          className="text-bluish text-sm underline hover:font-bold focus:font-bold transition-all focus:outline-none"
+        >
+          Go Back to Cart
+        </Link>
+      </div>
       <div className="mx-auto w-11/12 max-w-7xl pt-6">
         <section className="flex flex-col sm:flex-row justify-between mb-6">
           <h1 className="text-3xl font-medium">Order Confirmation</h1>
