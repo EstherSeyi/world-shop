@@ -2,13 +2,13 @@
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 
-/** Components */
-import ProductCard from "../src/components/ProductCard";
+import { ProductProvider } from "../src/hooks/product";
+import ProductsList from "../src/components/Products";
 
-/** Other Stuff */
 import dummyData from "../src/assets/data.json";
 import { useCart } from "../src/hooks/cart";
-import Asset from "../src/types/asset";
+import { GiftcardType } from "../src/types/giftcards";
+import { useAppQuery } from "../src/hooks/queries";
 
 const CartCount = dynamic(() => import("../src/components/CartCount"), {
   ssr: false,
@@ -17,27 +17,38 @@ const CartCount = dynamic(() => import("../src/components/CartCount"), {
 export default function Home() {
   const { dispatch } = useCart();
 
-  const handleAddToCart = (asset: Asset) => {
+  const { data, isLoading, error } = useAppQuery("assets", {
+    url: "/v0.2/info/assets",
+  });
+
+  const giftcards = data?.data?.giftCardsRLD?.content ?? [];
+
+  console.log({ giftcards });
+
+  const handleAddToCart = (giftcard: GiftcardType) => {
     dispatch({
       type: "ADD",
-      payload: { cartItem: { id: asset.id, quantity: 1 } },
+      payload: { cartItem: { id: giftcard.productId, quantity: 1 } },
     });
-    toast(`${asset.name} added to cart`);
+    toast(<div>`${giftcard.name} added to cart`</div>);
   };
 
   return (
-    <main className=" mx-auto w-11/12 max-w-7xl py-8">
-      <h1 className="text-xl sm:text-3xl font-medium">Supported Assets</h1>
+    <section className=" mx-auto w-11/12 max-w-7xl py-8">
+      <h1 className="text-xl sm:text-3xl font-medium">Gift Cards</h1>
       <CartCount />
-      <section className="grid grid-cols-auto gap-8">
-        {dummyData?.data?.benefitsList.map((asset) => (
-          <ProductCard
-            key={asset.id}
-            asset={asset}
-            handleAddToCart={handleAddToCart}
-          />
-        ))}
-      </section>
-    </main>
+      {isLoading ? (
+        <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px]">
+          Loading...
+        </div>
+      ) : error ? (
+        <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px] text-center">
+          <p className="mb-2">Ooops! This embarassing...</p>
+          <p>Please refresh</p>
+        </div>
+      ) : (
+        <ProductsList giftcards={giftcards} />
+      )}
+    </section>
   );
 }
