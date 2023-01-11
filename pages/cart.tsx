@@ -16,7 +16,7 @@ const Cart = () => {
           href="/"
           className="text-bluish text-sm underline hover:font-bold focus:font-bold transition-all focus:outline-none"
         >
-          Go back to Products Page
+          Go back to Shop
         </Link>
       </div>
       <section className="flex flex-col md:flex-row justify-between w-11/12 mx-auto py-4 md:py-8 text-black text-base max-w-7xl">
@@ -29,7 +29,7 @@ const Cart = () => {
                 className="font-medium text-bluish text-sm hover:font-bold focus:font-bold focus:underline focus:outline-none transition-all"
                 onClick={() =>
                   dispatch({
-                    type: "INITIALIZE_CART",
+                    type: "RESET_CART",
                     payload: {
                       cartItems: [],
                       totalNoOfItems: 0,

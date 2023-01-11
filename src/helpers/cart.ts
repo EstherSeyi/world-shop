@@ -131,6 +131,11 @@ const changeQuantityInCart = (
   }
 };
 
+const resetCart = () => {
+  updateCartDetails([], 0);
+  return { cartItems: [], totalNoOfItems: 0 };
+};
+
 export const cartInitialState: State = {
   cartItems: [],
   totalNoOfItems: 0,
@@ -152,6 +157,8 @@ export const cartReducer = (
         cartItems: cartItems ?? [],
         totalNoOfItems: totalNoOfItems ?? 0,
       };
+    case "RESET_CART":
+      return resetCart();
     default:
       return state;
   }
