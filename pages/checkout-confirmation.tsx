@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { useCart } from "../src/hooks/cart";
 import { calculateTotalCartValue } from "../src/components/SubTotal";
@@ -9,13 +10,25 @@ import { CartItemType } from "../src/types/cart";
 import { i18nCurrencyFormat } from "../src/helpers/format";
 
 const ConfirmCheckout = () => {
-  const { state } = useCart();
+  const router = useRouter();
+  const { state, dispatch } = useCart();
 
   const totalCartValue = useMemo(
     () => calculateTotalCartValue(state.cartItems),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [JSON.stringify(state.cartItems)]
   );
+
+  const handlePlaceOrder = () => {
+    router.push("/thankyou");
+    dispatch({
+      type: "RESET_CART",
+      payload: {
+        cartItems: [],
+        totalNoOfItems: 0,
+      },
+    });
+  };
 
   return (
     <main className="md:bg-[#ebeded] min-h-screen">
@@ -38,7 +51,10 @@ const ConfirmCheckout = () => {
               </span>
             </p>
 
-            <button className="bg-yellow px-2.5 py-1 rounded shadow">
+            <button
+              className="bg-yellow px-2.5 py-1 rounded shadow"
+              onClick={handlePlaceOrder}
+            >
               Place Order
             </button>
           </div>
