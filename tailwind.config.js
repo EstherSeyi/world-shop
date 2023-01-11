@@ -27,6 +27,7 @@ module.exports = {
     extend: {
       screens: {
         xs: "320px",
+        xxs: "290px",
       },
       gridTemplateColumns: {
         auto: "repeat(auto-fill, minmax(200px, 1fr))",
