@@ -27,7 +27,7 @@ const SubTotal = () => {
   );
 
   const handleProceedToCheckout = () => {
-    if (totalCartValue) {
+    if (state.cartItems.length > 0) {
       router.push("/checkout-confirmation");
     }
   };
