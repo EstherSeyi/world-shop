@@ -26,16 +26,16 @@ const CartPopup = ({
           width="32"
           height="32"
         />
-        <div className="flex-1 mx-4">
+        <div className="basis-3/6 mx-4">
           <p>
             {product?.name}
             <span> added to cart!</span>
           </p>
         </div>
-        <div>
+        <div className="mr-4 basis-1/6">
           <p>Qty: {cartItem.quantity}</p>
         </div>
-        <div>
+        <div className="basis-1/6">
           <p>
             {i18nCurrencyFormat(product?.recipientCurrencyCode!).format(
               cartItem.amount * cartItem.quantity
