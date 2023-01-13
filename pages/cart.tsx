@@ -24,6 +24,8 @@ const Cart = () => {
     [data?.data?.giftCardsRLD?.content, state.cartItems]
   );
 
+  console.log(giftCardsDetails);
+
   return (
     <>
       <div className="w-11/12 mx-auto max-w-7xl pt-4">
@@ -39,16 +41,7 @@ const Cart = () => {
         <section className="md:basis-9/12 md:bg-white  md:mr-4 xs:p-4">
           <div className="hidden md:block">
             <h1 className="text-3xl font-medium">Shopping Cart</h1>
-            {isLoading ? (
-              <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px]">
-                Loading...
-              </div>
-            ) : error ? (
-              <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px] text-center">
-                <p className="mb-2">Ooops! This embarassing...</p>
-                <p>Please refresh</p>
-              </div>
-            ) : state.cartItems.length ? (
+            {state.cartItems.length ? (
               <button
                 className="font-medium text-bluish text-sm hover:font-bold focus:font-bold focus:underline focus:outline-none transition-all"
                 onClick={() =>
@@ -80,22 +73,33 @@ const Cart = () => {
                   href="/"
                   className="hover:font-bold focus:font-bold transition-all"
                 >
-                  Continue shopping supported assets.
+                  Continue shopping giftcards.
                 </Link>
               </p>
             </div>
           ) : null}
 
-          <ul>
-            {!isLoading && giftCardsDetails?.length
-              ? giftCardsDetails?.map((giftcard) => (
-                  <CartItem
-                    key={`${giftcard.productId}_${giftcard.name}`}
-                    giftcard={giftcard}
-                  />
-                ))
-              : null}
-          </ul>
+          {isLoading ? (
+            <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px]">
+              Loading...
+            </div>
+          ) : error ? (
+            <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px] text-center">
+              <p className="mb-2">Ooops! This embarassing...</p>
+              <p>Please refresh</p>
+            </div>
+          ) : state.cartItems.length ? (
+            <ul>
+              {!isLoading && giftCardsDetails?.length
+                ? giftCardsDetails?.map((giftcard) => (
+                    <CartItem
+                      key={`${giftcard.productId}_${giftcard.name}_${giftcard.amount}`}
+                      giftcard={giftcard}
+                    />
+                  ))
+                : null}
+            </ul>
+          ) : null}
         </section>
       </section>
     </>
