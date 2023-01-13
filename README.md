@@ -47,3 +47,4 @@ yarn run test
 - Using next image to optimize images for different screen sizes
 - React performance optimization apis like useMemo to make sure operations are not run more times than necessary.
 - Collocation: making sure that state is as close as possible to where it's being used.
+- Offline Persistence: Implemented offline persistence such that the app is usable for some time(at least 24hrs) when the user is not connected to their internet.
