@@ -55,7 +55,7 @@ const Product = () => {
 
   return (
     <section className=" mx-auto w-11/12 max-w-6xl py-8" data-cy="product-page">
-      <div>
+      <div className="flex items-center justify-between sm:mt-0 mb-4">
         <Link
           data-cy="back-to-shop-link"
           href="/"
@@ -63,8 +63,8 @@ const Product = () => {
         >
           Go back to Shop
         </Link>
+        <CartCount />
       </div>
-      <CartCount />
       <div className="bg-white py-6">
         <div className="flex flex-col sm:flex-row w-11/12 mx-auto">
           <div className="relative sm:basis-3/6 sm:mr-4 aspect-square mb-4 sm:mb-0 w-full sm:max-w-md">
@@ -93,7 +93,7 @@ const Product = () => {
                       }}
                     >
                       <Select.Trigger
-                        className="flex items-center justify-between gap-4 w-40 text-sm rounded-md border border-bluish focus:outline-bluish  px-2 py-1.5"
+                        className="flex items-center justify-between gap-4 min-w-[160px] text-sm rounded-md border border-bluish focus:outline-bluish  px-2 py-1.5"
                         aria-label="Item Amount"
                       >
                         <Select.Value
