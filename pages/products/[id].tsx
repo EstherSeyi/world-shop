@@ -30,6 +30,17 @@ const Product = () => {
 
   const handleAddToCart = (event: any) => {
     event.preventDefault();
+    if (
+      product?.denominationType === "RANGE" &&
+      (amount < product?.minRecipientDenomination! ||
+        amount > product?.maxRecipientDenomination!)
+    ) {
+      return toast.error(
+        `Amount must be min.: ${
+          product?.minRecipientDenomination ?? ""
+        } max.: ${product?.maxRecipientDenomination ?? ""}`
+      );
+    }
     dispatch({
       type: "ADD",
       payload: { cartItem: { id: product?.productId!, quantity: 1, amount } },
@@ -38,10 +49,7 @@ const Product = () => {
       <CartPopup
         product={{ ...product, cartQuantity: 1 } as GiftcardType}
         amount={amount}
-      />,
-      {
-        duration: 4000,
-      }
+      />
     );
   };
 
@@ -75,56 +83,72 @@ const Product = () => {
               <div className="flex flex-col xxs:flex-row">
                 <div className="relative">
                   <p className="mb-1 text-lg font-medium">Select Amount</p>
-                  <Select.Root
-                    value={amount.toString()}
-                    onValueChange={(selected) => {
-                      setAmount(Number(selected));
-                    }}
-                  >
-                    <Select.Trigger
-                      className="flex items-center justify-between gap-4 w-40 text-sm rounded-md border border-bluish focus:outline-bluish  px-2 py-1.5"
-                      aria-label="Item Amount"
+                  {product?.denominationType === "FIXED" ? (
+                    <Select.Root
+                      value={amount.toString()}
+                      onValueChange={(selected) => {
+                        setAmount(Number(selected));
+                      }}
                     >
-                      <Select.Value placeholder={getDenominationRange(product)}>
-                        <span className="cursor-pointer">
-                          Amount: {i18nCurrencyFormat("USD").format(amount)}
-                        </span>
-                      </Select.Value>
-                      <Select.Icon
-                        className="w-4 flex items-center justify-center"
-                        asChild
+                      <Select.Trigger
+                        className="flex items-center justify-between gap-4 w-40 text-sm rounded-md border border-bluish focus:outline-bluish  px-2 py-1.5"
+                        aria-label="Item Amount"
                       >
-                        <ChevronDownIcon width={15} />
-                      </Select.Icon>
-                    </Select.Trigger>
+                        <Select.Value
+                          placeholder={getDenominationRange(product)}
+                        >
+                          <span className="cursor-pointer">
+                            Amount: {i18nCurrencyFormat("USD").format(amount)}
+                          </span>
+                        </Select.Value>
+                        <Select.Icon
+                          className="w-4 flex items-center justify-center"
+                          asChild
+                        >
+                          <ChevronDownIcon width={15} />
+                        </Select.Icon>
+                      </Select.Trigger>
 
-                    <Select.Content className="overflow-hidden bg-white rounded shadow">
-                      <Select.Viewport className="p-2 flex flex-col gap-2">
-                        {product?.fixedRecipientDenominations?.length &&
-                          product?.fixedRecipientDenominations.map(
-                            (denomination) => {
-                              return (
-                                <Select.Item
-                                  className="text-sm cursor-pointer flex items-center justify-between transition-all ease-linear duration-300 outline-none p-1 rounded focus:bg-grey"
-                                  key={denomination}
-                                  value={denomination.toString()}
-                                >
-                                  <Select.ItemText>
-                                    {i18nCurrencyFormat("USD").format(
-                                      denomination
-                                    )}
-                                  </Select.ItemText>
+                      <Select.Content className="overflow-hidden bg-white rounded shadow">
+                        <Select.Viewport className="p-2 flex flex-col gap-2">
+                          {product?.fixedRecipientDenominations?.length &&
+                            product?.fixedRecipientDenominations.map(
+                              (denomination) => {
+                                return (
+                                  <Select.Item
+                                    className="text-sm cursor-pointer flex items-center justify-between transition-all ease-linear duration-300 outline-none p-1 rounded focus:bg-grey"
+                                    key={denomination}
+                                    value={denomination.toString()}
+                                  >
+                                    <Select.ItemText>
+                                      {i18nCurrencyFormat("USD").format(
+                                        denomination
+                                      )}
+                                    </Select.ItemText>
 
-                                  <Select.ItemIndicator className="w-6 inline-flex justify-center items-center">
-                                    <CheckIcon />
-                                  </Select.ItemIndicator>
-                                </Select.Item>
-                              );
-                            }
-                          )}
-                      </Select.Viewport>
-                    </Select.Content>
-                  </Select.Root>
+                                    <Select.ItemIndicator className="w-6 inline-flex justify-center items-center">
+                                      <CheckIcon />
+                                    </Select.ItemIndicator>
+                                  </Select.Item>
+                                );
+                              }
+                            )}
+                        </Select.Viewport>
+                      </Select.Content>
+                    </Select.Root>
+                  ) : (
+                    <input
+                      name="amount"
+                      type="number"
+                      className="border border-grey rounded w-16 mr-2 text-sm"
+                      value={amount}
+                      onChange={(e: any) => {
+                        const { value } = e.target;
+
+                        setAmount(value);
+                      }}
+                    />
+                  )}
                 </div>
               </div>
               <button
