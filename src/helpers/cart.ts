@@ -10,9 +10,9 @@ import { updateCartDetails, storeCartDetails } from "./localstorage";
  * @returns - updated state including newly added asset
  */
 const addToCart = (state: State, cartItem: CartItemType) => {
-  // find index of selected asset
+  // find index of selected asset in cart
   const cartItemIndex = state.cartItems.findIndex(
-    (item) => item.id === cartItem.id
+    (item) => item.id === cartItem.id && item.amount === cartItem.amount
   );
   const totalNoOfItems = state.totalNoOfItems + cartItem.quantity;
   if (cartItemIndex !== -1) {
@@ -77,7 +77,7 @@ const addToCart = (state: State, cartItem: CartItemType) => {
 const removeFromCart = (state: State, cartItem: CartItemType) => {
   // find index of selected asset
   const assetIndex = state.cartItems.findIndex(
-    (item) => item.id === cartItem.id
+    (item) => item.id === cartItem.id && item.amount === cartItem.amount
   );
   if (assetIndex !== -1) {
     // decrease totalNoOfItems by total number of selected asset in the cart.
@@ -114,7 +114,7 @@ const changeQuantityInCart = (
   cartQuantity: number
 ) => {
   const assetIndex = state.cartItems.findIndex(
-    (item) => item.id === cartItem.id
+    (item) => item.id === cartItem.id && item.amount === cartItem.amount
   );
   if (assetIndex !== -1) {
     // change cart quantity of selected asset to newly chosen quantity
