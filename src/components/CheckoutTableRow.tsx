@@ -11,14 +11,14 @@ const CheckoutTableRow = ({ orderItem }: any) => {
   return (
     <div className="flex border-b border-grey py-1 mb-2">
       <p className="basis-4/6 sm:basis-3/6 overflow-ellipsis">
-        {assetDetails?.name}
+        {orderItem.id}
 
         <span className="sm:hidden">({orderItem.quantity})</span>
       </p>
       <p className="hidden sm:block basis-1/6">{orderItem.quantity}</p>
       <p className="basis-2/6">
         {i18nCurrencyFormat(assetDetails?.currency ?? "USD").format(
-          Number(assetDetails?.price) * orderItem.quantity!
+          Number(orderItem?.amount) * orderItem.quantity!
         )}
       </p>
     </div>
