@@ -6,13 +6,7 @@ import { getDenominationRange } from "../helpers/giftcard";
 import { useProductDetail } from "../hooks/product";
 import { GiftcardType } from "../types/giftcards";
 
-const ProductCard = ({
-  giftcard,
-}: // handleAddToCart,
-{
-  giftcard: GiftcardType;
-  // handleAddToCart: (giftcard: GiftcardType) => void;
-}) => {
+const ProductCard = ({ giftcard }: { giftcard: GiftcardType }) => {
   const { setProduct } = useProductDetail();
   const handleClick = () => {
     setProduct(giftcard);
