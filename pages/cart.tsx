@@ -87,9 +87,8 @@ const Cart = () => {
           ) : null}
 
           <ul>
-            {!isLoading
-              ? giftCardsDetails?.length &&
-                giftCardsDetails?.map((giftcard) => (
+            {!isLoading && giftCardsDetails?.length
+              ? giftCardsDetails?.map((giftcard) => (
                   <CartItem
                     key={`${giftcard.productId}_${giftcard.name}`}
                     giftcard={giftcard}
