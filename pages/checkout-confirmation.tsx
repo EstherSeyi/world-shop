@@ -68,7 +68,10 @@ const ConfirmCheckout = () => {
             </div>
 
             {state.cartItems.map((cartItem: CartItemType) => (
-              <CheckoutTableRow key={cartItem.id} orderItem={cartItem} />
+              <CheckoutTableRow
+                key={`${cartItem.id}_${cartItem.amount}`}
+                orderItem={cartItem}
+              />
             ))}
             <div className="flex  pb-1 mb-2">
               <p className="basis-4/6 font-medium">Total</p>
