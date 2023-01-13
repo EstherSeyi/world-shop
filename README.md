@@ -1,36 +1,38 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### How run the development server
 
-First, run the development server:
+Run yarn to install dependencies
 
 ```bash
-npm run dev
-# or
+yarn
+```
+
+Add a .env file to the root folder with the following ENV variables
+
+```
+NEXT_PUBLIC_BASE_URL='https://api.chimoney.io'
+NEXT_PUBLIC_API_KEY=''
+```
+
+Run command to start dev server
+
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Any additional features you implemented:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Product Detail Page
+- Dummy Checkout & Order Confirmation
+- API Integration
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### My approach to the product, including any design decisions or tradeoﬀs you made
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Design Decisions
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Adding `amount` to cart data in localStorage: I started off building with a dummy JSON file and implementing the cart feature like a regular ecommerce site. When I started integrating the API with the giftcards I realised some things were different such as pricing, so I decided to also add the amount(denomination) of the giftcard selected by the user to the cart. I made this decision because, I thought it was a good way to have the price included in the cart.
 
-## Learn More
+- Tradeoﬀs
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Ideas to improve the performance of the ﬂipbook
