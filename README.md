@@ -11,7 +11,7 @@ yarn
 Add a .env file to the root folder with the following ENV variables
 
 ```
-NEXT_PUBLIC_BASE_URL='https://api.chimoney.io'
+NEXT_PUBLIC_BASE_URL=''
 NEXT_PUBLIC_API_KEY=''
 ```
 
