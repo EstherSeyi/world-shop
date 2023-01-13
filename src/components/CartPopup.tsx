@@ -21,10 +21,11 @@ const CartPopup = ({
     <div className="bg-white w-96 rounded-md shadow-md">
       <div className="w-11/12 mx-auto flex justify-between py-4">
         <Image
+          className="object-cover self-start aspect-square"
           src={product?.img ?? ""}
           alt={product?.name ?? "unknown product"}
-          width="32"
-          height="32"
+          width={50}
+          height={50}
         />
         <div className="basis-3/6 mx-4">
           <p>
