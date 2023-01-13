@@ -1,13 +1,8 @@
 /** Third Party */
-import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 
-import { ProductProvider } from "../src/hooks/product";
 import ProductsList from "../src/components/Products";
 
-import dummyData from "../src/assets/data.json";
-import { useCart } from "../src/hooks/cart";
-import { GiftcardType } from "../src/types/giftcards";
 import { useAppQuery } from "../src/hooks/queries";
 
 const CartCount = dynamic(() => import("../src/components/CartCount"), {
