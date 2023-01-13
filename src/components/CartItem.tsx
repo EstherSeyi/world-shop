@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { useCart } from "../hooks/cart";
+import { useProductDetail } from "../hooks/product";
 import { i18nCurrencyFormat } from "../helpers/format";
 
 import { CartItemType } from "../types/cart";
@@ -9,6 +11,7 @@ import { GiftcardType } from "../types/giftcards";
 
 const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
   const { dispatch } = useCart();
+  const { setProduct } = useProductDetail();
   const handleDelete = (cartItem: CartItemType) => {
     dispatch({
       type: "REMOVE",
@@ -16,6 +19,11 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
         cartItem,
       },
     });
+  };
+
+  const handleClick = () => {
+    setProduct(giftcard);
+    localStorage.setItem("currentProduct", JSON.stringify(giftcard));
   };
 
   return (
@@ -31,14 +39,20 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
         </div>
         <div className="xs:flex-grow flex px-4 xs:px-4">
           <div className="flex-grow">
-            <p className="mb-0.5 md:text-lg font-medium text-sm">
+            <Link
+              className=" md:text-lg font-medium text-sm hover:underline transition-all"
+              href={`/products/${giftcard.productId}`}
+              onClick={handleClick}
+            >
               {giftcard?.name}
+            </Link>
+            <p className="mb-0.5  text-sm opacity-70">
+              {giftcard?.amount} {giftcard?.recipientCurrencyCode}
             </p>
             <p className="md:hidden mb-0.5 font-bold text-lg">
-              price
-              {/* {i18nCurrencyFormat(assetDetails?.currency ?? "USD").format(
-                Number(assetDetails?.price) * cartItem.quantity!
-              )} */}
+              {i18nCurrencyFormat(
+                giftcard.recipientCurrencyCode ?? "USD"
+              ).format(giftcard?.amount! * giftcard?.cartQuantity!)}
             </p>
             <p
               className={`text-xs ${
@@ -54,7 +68,6 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
                 {giftcard.brand.brandName}
               </span>
             </p>
-            {/* <p className="text-xs">Size: {assetDetails?.sizes[0]}</p> */}
             <div className="mt-1 xs:mt-3 md:mt-4">
               <SelectQuantity
                 cartItem={{
