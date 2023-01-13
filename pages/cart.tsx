@@ -24,12 +24,11 @@ const Cart = () => {
     [data?.data?.giftCardsRLD?.content, state.cartItems]
   );
 
-  console.log(giftCardsDetails);
-
   return (
     <>
       <div className="w-11/12 mx-auto max-w-7xl pt-4">
         <Link
+          data-cy="back-to-shop-link"
           href="/"
           className="text-bluish text-sm underline hover:font-bold focus:font-bold transition-all focus:outline-none"
         >
@@ -43,6 +42,7 @@ const Cart = () => {
             <h1 className="text-3xl font-medium">Shopping Cart</h1>
             {state.cartItems.length ? (
               <button
+                data-cy="clear-cart"
                 className="font-medium text-bluish text-sm hover:font-bold focus:font-bold focus:underline focus:outline-none transition-all"
                 onClick={() =>
                   dispatch({
@@ -89,7 +89,7 @@ const Cart = () => {
               <p>Please refresh</p>
             </div>
           ) : state.cartItems.length ? (
-            <ul>
+            <ul data-cy="cart-items-list">
               {!isLoading && giftCardsDetails?.length
                 ? giftCardsDetails?.map((giftcard) => (
                     <CartItem

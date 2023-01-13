@@ -18,7 +18,9 @@ export default function Home() {
 
   return (
     <section className=" mx-auto w-11/12 max-w-7xl py-8">
-      <h1 className="text-xl sm:text-3xl font-medium">Gift Cards</h1>
+      <h1 className="text-xl sm:text-3xl font-medium" data-cy="page-title">
+        Gift Cards
+      </h1>
       <CartCount />
       {isLoading ? (
         <div className="fixed top-1/2 left-1/2 -mt-[50px] -ml-[50px]">

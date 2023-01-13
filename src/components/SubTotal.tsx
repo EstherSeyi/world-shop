@@ -32,11 +32,14 @@ const SubTotal = () => {
       <div>
         <p>
           Subtotal{" "}
-          <span className="hidden md:inline">
+          <span data-cy="cart-quantity" className="hidden md:inline">
             ({state.totalNoOfItems} item
             {`${state.totalNoOfItems > 1 ? "s" : ""}`})
           </span>
-          : <span>{i18nCurrencyFormat("USD").format(totalCartValue)}</span>
+          :{" "}
+          <span data-cy="cart-amount">
+            {i18nCurrencyFormat("USD").format(totalCartValue)}
+          </span>
         </p>
       </div>
       <button

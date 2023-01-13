@@ -27,7 +27,10 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
   };
 
   return (
-    <li className="flex items-start md:items-center mb-10 bg-[#f8f9fa] md:bg-white p-2 xs:p-3 md:p-0 md:pb-5 rounded md:rounded-none  md:border-b border-grey">
+    <li
+      data-cy={`item-${giftcard.productId}`}
+      className="flex items-start md:items-center mb-10 bg-[#f8f9fa] md:bg-white p-2 xs:p-3 md:p-0 md:pb-5 rounded md:rounded-none  md:border-b border-grey"
+    >
       <div className="flex flex-col gap-4 xs:items-start xs:flex-row flex-grow">
         <div className="relative w-full xs:w-32 aspect-square flex-shrink-0">
           <Image
@@ -49,7 +52,10 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
             <p className="mb-0.5  text-sm opacity-70">
               {giftcard?.amount} {giftcard?.recipientCurrencyCode}
             </p>
-            <p className="md:hidden mb-0.5 font-bold text-lg">
+            <p
+              data-cy={`item-${giftcard.productId}-amount`}
+              className="md:hidden mb-0.5 font-bold text-lg"
+            >
               {i18nCurrencyFormat(
                 giftcard.recipientCurrencyCode ?? "USD"
               ).format(giftcard?.amount! * giftcard?.cartQuantity!)}
@@ -78,6 +84,7 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
                 handleDelete={handleDelete}
               />
               <button
+                data-cy={`item-${giftcard.productId}-delete`}
                 className="text-bluish text-xs focus:outline-none focus:underline hover:underline transition-all"
                 onClick={() =>
                   handleDelete({
@@ -93,7 +100,10 @@ const CartItem = ({ giftcard }: { giftcard: GiftcardType }) => {
           </div>
         </div>
       </div>
-      <p className="self-start hidden md:block font-bold ml-auto">
+      <p
+        data-cy={`item-${giftcard.productId}-totalAmt`}
+        className="self-start hidden md:block font-bold ml-auto"
+      >
         {i18nCurrencyFormat(giftcard.recipientCurrencyCode ?? "USD").format(
           giftcard?.amount! * giftcard?.cartQuantity!
         )}

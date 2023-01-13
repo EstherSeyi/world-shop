@@ -54,9 +54,10 @@ const Product = () => {
   };
 
   return (
-    <section className=" mx-auto w-11/12 max-w-6xl py-8">
+    <section className=" mx-auto w-11/12 max-w-6xl py-8" data-cy="product-page">
       <div>
         <Link
+          data-cy="back-to-shop-link"
           href="/"
           className="text-bluish text-sm underline hover:font-bold focus:font-bold transition-all focus:outline-none"
         >
@@ -68,6 +69,7 @@ const Product = () => {
         <div className="flex flex-col sm:flex-row w-11/12 mx-auto">
           <div className="relative sm:basis-3/6 sm:mr-4 aspect-square mb-4 sm:mb-0 w-full sm:max-w-md">
             <Image
+              data-cy="product-image"
               src={product?.img ?? ""}
               alt={product?.name ?? "unamed product"}
               className="object-cover"
@@ -152,6 +154,7 @@ const Product = () => {
                 </div>
               </div>
               <button
+                data-cy="add-to-cart-btn"
                 type="submit"
                 className="text-xs bg-yellow px-6 py-1.5 rounded-md shadow-sm mt-2"
               >

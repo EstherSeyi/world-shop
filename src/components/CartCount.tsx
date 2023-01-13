@@ -8,12 +8,16 @@ const CartCount = () => {
   return (
     <div className="mt-4 sm:mt-0 mb-4">
       <button
+        data-cy="cart"
         className="block transition-all ml-auto hover:text-bluish focus:text-bluish"
         onClick={() => router.push("/cart")}
       >
         <div className="relative">
           <CartIcon className="h-8 w-8" />
-          <span className="absolute bottom-6 left-3 ml-0.25 break-words text-sm">
+          <span
+            className="absolute bottom-6 left-3 ml-0.25 break-words text-sm"
+            data-cy="cart-products-quantity"
+          >
             {state.totalNoOfItems}
           </span>
         </div>

@@ -13,7 +13,11 @@ const ProductCard = ({ giftcard }: { giftcard: GiftcardType }) => {
     localStorage.setItem("currentProduct", JSON.stringify(giftcard));
   };
   return (
-    <Link href={`/products/${giftcard.productId}`} onClick={handleClick}>
+    <Link
+      href={`/products/${giftcard.productId}`}
+      onClick={handleClick}
+      data-cy={`product-${giftcard.productId}`}
+    >
       <div className="rounded-md shadow">
         <div className="relative w-full min-w-[200px] aspect-square mb-2 ">
           <Image
