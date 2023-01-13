@@ -11,8 +11,7 @@ const CheckoutTableRow = ({ orderItem }: any) => {
   return (
     <div className="flex border-b border-grey py-1 mb-2">
       <p className="basis-4/6 sm:basis-3/6 overflow-ellipsis">
-        {orderItem.id}
-
+        #{orderItem.id}
         <span className="sm:hidden">({orderItem.quantity})</span>
       </p>
       <p className="hidden sm:block basis-1/6">{orderItem.quantity}</p>
