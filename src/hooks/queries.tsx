@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { fetch } from "../helpers/queries";
 
@@ -13,7 +13,7 @@ export const useAppQuery = (
   axiosOptions: any,
   queryOptions = {}
 ) => {
-  const { data, error, isLoading, isFetched } = useQuery(
+  const { data, error, isLoading, isFetched, refetch } = useQuery(
     [`${queryKeyPrefix}`],
     () => fetch(axiosOptions),
     {
@@ -22,5 +22,5 @@ export const useAppQuery = (
     }
   );
 
-  return { data, error, isLoading, isFetched };
+  return { data, error, isLoading, isFetched, refetch };
 };
