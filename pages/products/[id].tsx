@@ -145,7 +145,7 @@ const Product = () => {
                       onChange={(e: any) => {
                         const { value } = e.target;
 
-                        setAmount(value);
+                        setAmount(Number(value));
                       }}
                     />
                   )}
