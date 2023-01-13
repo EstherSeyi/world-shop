@@ -18,7 +18,13 @@ NEXT_PUBLIC_API_KEY=''
 Run command to start dev server
 
 ```bash
-yarn dev
+yarn run dev
+```
+
+To Run tests
+
+```
+yarn run test
 ```
 
 ### Any additional features you implemented:
@@ -35,4 +41,9 @@ yarn dev
 
 - Tradeoﬀs
 
-### Ideas to improve the performance of the ﬂipbook
+### Ideas I applied to improve the performance of the ﬂipbook
+
+- Caching data fetched
+- Using next image to optimize images for different screen sizes
+- React performance optimization apis like useMemo to make sure operations are not run more times than necessary.
+- Collocation: making sure that state is as close as possible to where it's being used.
