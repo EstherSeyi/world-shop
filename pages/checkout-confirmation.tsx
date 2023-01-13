@@ -62,7 +62,7 @@ const ConfirmCheckout = () => {
         <section className="bg-white shadow py-6 mb-4">
           <div className="mx-auto w-11/12">
             <div className="flex border-b border-grey pb-1 mb-2">
-              <p className="basis-4/6 sm:basis-3/6 font-medium">Asset</p>
+              <p className="basis-4/6 sm:basis-3/6 font-medium">Product Id</p>
               <p className="hidden sm:block basis-1/6 font-medium">Quantity</p>
               <p className="basis-2/6 font-medium">Cost</p>
             </div>
