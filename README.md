@@ -39,8 +39,6 @@ yarn run test
 
 1. Adding `amount` to cart data in localStorage: I started off building with a dummy JSON file and implementing the cart feature like a regular ecommerce site. When I started integrating the API with the giftcards I realised some things were different such as pricing, so I decided to also add the amount(denomination) of the giftcard selected by the user to the cart. I made this decision because, I thought it was a good way to have the price included in the cart.
 
-- Tradeoﬀs
-
 ### Ideas I applied to improve the performance of the ﬂipbook
 
 - Caching data fetched
