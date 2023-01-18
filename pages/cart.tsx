@@ -7,6 +7,7 @@ import SubTotal from "../src/components/SubTotal";
 import { useCart } from "../src/hooks/cart";
 import { useAppQuery } from "../src/hooks/queries";
 import { getCartItemsDetails } from "../src/helpers/cart";
+import dummyData from "../cypress/fixtures/products.json";
 
 const Cart = () => {
   const { state, dispatch } = useCart();
@@ -19,7 +20,7 @@ const Cart = () => {
     () =>
       getCartItemsDetails(
         state.cartItems,
-        data?.data?.giftCardsRLD?.content ?? []
+        data?.data?.giftCardsRLD?.content ?? dummyData.data.giftCardsRLD.content
       ),
     [data?.data?.giftCardsRLD?.content, state.cartItems]
   );
